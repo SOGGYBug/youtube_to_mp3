@@ -1,0 +1,66 @@
+<!-- views/index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>YouTube to MP3 Converter</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+  <!-- 🔥 Background Video -->
+  <video id="bg-video" autoplay muted loop>
+    <source src="/css/bgm.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- 🌑 Dark Overlay -->
+  <div class="overlay"></div>
+
+  <div class="container">
+    <h1>YouTube to MP3 Converter</h1>
+    <form id="convert-form" action="/download" method="POST">
+      <input 
+        type="url" 
+        id="youtube-url" 
+        name="url" 
+        placeholder="Paste YouTube video URL here..." 
+        required
+      >
+      <button type="submit">Convert</button>
+    </form>
+    
+    <div id="loader" style="display: none;">Converting...</div>
+
+    <div id="message"></div>
+
+    <% if (downloadLink) { %>
+      <div class="success">
+        <p>✅ Conversion complete!</p>
+        <a href="<%= downloadLink %>" download class="download-btn">Download</a>
+      </div>
+    <% } else if (error) { %>
+      <div class="error"><%= error %></div>
+    <% } %>
+
+    <!-- ✅ Moved inside the container -->
+    <div class="social-buttons">
+      <a href="https://www.linkedin.com/in/shaktipad-ray-ab0575282/" target="_blank" class="social-icon linkedin">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+      <a href="https://github.com/SOGGYBug" target="_blank" class="social-icon github">
+        <i class="fab fa-github"></i>
+      </a>
+      <a href="https://www.instagram.com/soggy_noises_/" target="_blank" class="social-icon instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+    </div>
+
+  </div>
+
+  <script src="/js/script.js"></script>
+</body>
+</html>
